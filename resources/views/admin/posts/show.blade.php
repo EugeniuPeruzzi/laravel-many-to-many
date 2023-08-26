@@ -12,6 +12,16 @@
                         <p class="card-text"> {{ $posts->slug }}</p>
                         <a href="{{ Route('admin.posts.index') }}" class="btn btn-primary">Back Home</a>
                         <p class="card-text"> {{ $posts->category->name }} </p>
+                        <div class="col-12">
+                            <strong>Tecnologie:</strong>
+                            @if ($posts->technologies)
+                                @foreach ($posts->technologies as $technology)
+                                    <a href="" class="btn btn-sm btn-primary">{{ $technology->name }}</a>
+                                @endforeach
+                            @else
+                                Non sono presenti tecnologie associate al progetto
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

@@ -49,7 +49,16 @@
                                     @endforeach
                                 </select>
                             </div>
-
+                            {{-- Check box technology --}}
+                            <div class="form-group mt-4">
+                                <p>Seleziona le tecnologie</p>
+                                @foreach ($technologies as $technology)
+                                    <input type="checkbox" name="technologies[]" value="{{ $technology->id }}"
+                                        class="form-check-input"
+                                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                                    <label class="form-check-label">{{ $technology->name }}</label>
+                                @endforeach
+                            </div>
                             <div class="col-12 text-center my-5">
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-success">Crea</button>

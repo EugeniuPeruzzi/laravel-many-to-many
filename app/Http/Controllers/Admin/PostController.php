@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Technology;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
@@ -32,9 +33,9 @@ class PostController extends Controller
     {
 
         $categories = Category::all();
+        $technologies = Technology::all();
 
-
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories' ,'technologies'));
     }
 
     /**
@@ -55,6 +56,9 @@ class PostController extends Controller
 
         $post->fill($form_data);
         $post->save();
+        if($request->has('technologies')){
+            $post->technologies()->attach($request->technologies);
+        }  
 
         return redirect()->route('admin.posts.show', $post->id);
     }
@@ -116,6 +120,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->technologies()->sync([]);
+
+        Storage::delete($post->image);
+
+        $title_post = $post->title;
+
         $post->delete();
 
         return redirect()->route('admin.posts.index');

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreign('post_id')->references('id')->on('posts');
 
             // tabella ponte id di tecnologies
-            $table->unsignedBigInteger('technologies_id');
-            $table->foreign('technologies_id')->references('id')->on('technologies');
+            $table->unsignedBigInteger('technology_id');
+            $table->foreign('technology_id')->references('id')->on('technologies');
         });
     }
 
