@@ -85,8 +85,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $technologies = Technology::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'technologies'));
     }
 
     /**
@@ -107,6 +108,10 @@ class PostController extends Controller
         }
 
         $post->update($form_data);
+
+        if($request->has('technologies')){
+            $post->technologies()->sync($request->technologies);
+        }  
 
         return redirect()->route('admin.posts.show', compact('post'));
     }

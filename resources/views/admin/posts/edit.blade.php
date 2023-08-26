@@ -57,6 +57,29 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                {{-- Edit technologyes --}}
+                                <div class="form-group mt-4">
+                                    <div>Seleziona la tecnologia</div>
+                                    @foreach ($technologies as $item)
+                                        <div class="form-check">
+                                            @if ($errors->any())
+                                                <input type="checkbox" name="technologies[]" value="{{ $item->id }}"
+                                                    class="form-check-input"
+                                                    {{ in_array($item->id, old('technologies', [])) ? 'checked' : '' }}>
+                                            @else
+                                                <input type="checkbox" name="technologies[]" value="{{ $item->id }}"
+                                                    class="form-check-input"
+                                                    {{ $post->technologies->contains($item) ? 'checked' : '' }}>
+                                            @endif
+                                            <label class="form-check-label">
+                                                {{ $item->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    {{-- @error('technologies')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror --}}
+                                </div>
                                 <div class="col-12 text-center my-5">
                                     <!-- Submit Button -->
                                     <button type="submit" class="btn btn-success">Modifica</button>
