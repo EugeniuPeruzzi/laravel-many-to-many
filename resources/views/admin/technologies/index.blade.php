@@ -32,15 +32,13 @@
                                     <td>
                                         <a href="{{ Route('admin.technologies.show', $item->id) }}"
                                             class="btn btn-sm btn-primary">Show</a>
-                                        <a href="{{ Route('admin.posts.edit', $item->id) }}"
+                                        <a href="{{ Route('admin.technologies.edit', $item->id) }}"
                                             class="btn btn-sm btn-warning">Edit</a>
-                                        <form action="{{ Route('admin.posts.destroy', $item) }}"
-                                            class="d-inline-block project-delete-button"
-                                            data-project-title="{{ $item->title }}" method="POST">
+                                        <form action="{{ Route('admin.technologies.destroy', $item) }}"
+                                            class="d-inline-block" data-project-title="{{ $item->title }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger " data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
+                                            <button type="submit" class="btn btn-sm btn-danger ">
                                                 Delete
                                         </form>
 
@@ -53,5 +51,4 @@
             </div>
         </div>
     </div>
-    @include('admin.partials.modal_delete');
 @endsection
