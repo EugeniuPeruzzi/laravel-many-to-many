@@ -5,15 +5,11 @@
         <div class="col">
             <div class="row">
                 <div class="col-12 d-flex justify-content-evenly align-items-center my-5">
-                    <h1>I nostri progetti</h1>
+                    <h1>Le tue tecnologie</h1>
                     <div class="btn-container d-flex">
                         <div class="btn-container">
-                            <a href="{{ Route('admin.posts.create') }}"><button class="btn btn-secondary">Crea
-                                    progetto</button></a>
-                        </div>
-                        <div class="btn-container ms-4">
-                            <a href="{{ Route('admin.technologies.index') }}"><button class="btn btn-warning">Modifica le
-                                    tecnologies</button></a>
+                            <a href="{{ Route('admin.technologies.create') }}"><button class="btn btn-secondary">Crea nuova
+                                    tecnologia</button></a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +30,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->slug }}</td>
                                     <td>
-                                        <a href="{{ Route('admin.posts.show', $item->id) }}"
+                                        <a href="{{ Route('admin.technologies.show', $item->id) }}"
                                             class="btn btn-sm btn-primary">Show</a>
                                         <a href="{{ Route('admin.posts.edit', $item->id) }}"
                                             class="btn btn-sm btn-warning">Edit</a>
